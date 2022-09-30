@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <record id="school_project_action" model="ir.actions.act_window">
+        <field name="name">School Data</field>
+        <field name="res_model">school.project</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            
+        </field> -->
+    </record>
+    <menuitem
+        id="school_project_root_menu"
+        name="School Project"
+        sequence="10"/>
+    <menuitem
+        id="school_project_sub_menu"
+        name="Student"
+        action="school_project_action"
+        parent="school_project_root_menu"
+        sequence="10"/>
+
+    <record id="student_view_form" model="ir.ui.view">
+        <field name="name">school_project.view.form</field>
+        <field name="model">school.project</field>
+        <field name="arch" type="xml">
+            <form string="">
+
+            <header>
+                <field name="status" widget="statusbar" statusbar_visible="presence,absence,former"/>
+            </header>
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="name" />
+                        <field name="roll_num" />
+                        <field name="dob" />
+                        <field name="father_name" />
+                        <field name="mother_name" />
+                    </group>
+                    <group>
+                        <field name="ph_no" />
+                        <field name="email" widget="email"/>
+                        <field name="role" widget="Selection" required="True"/>
+                        <field name="state" widget="Selection" required="True"/>
+                    </group>    
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="school_project_view_tree" model="ir.ui.view">
+        <field name="name">school_project.view.tree</field>
+        <field name="model">school.project</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="name" optional="show"/>
+                <field name="roll_num" optional="show"/>
+                <field name="dob" optional="show"/>
+                <field name="father_name" optional="show"/>
+                <field name="mother_name" optional="show"/>
+                <field name="ph_no" optional="show"/>
+                <field name="email" optional="show"/>
+                <field name="role" optional="show"/>
+                <field name="state" optional="show"/>
+                
+            </tree>
+        </field>
+    </record>
+
+
+
+</odoo>
