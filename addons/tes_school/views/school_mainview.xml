@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="school_pj_view_tree" model="ir.ui.view">
+        <field name="name">school.project.view.tree</field>
+        <field name="model">school.pj</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="roll_no"/>
+                <field name="name" optional = "show"/>
+                <field name="dob" />
+                <field name="father_name" />
+                <field name="ph_no" />
+                <field name="email" />
+                <field name="address" />
+                <field name="role" optional = "show"/>
+                <field name="status" optional = "show"/>
+                <field name="state" optional = "show"/>
+            </tree>
+        </field>
+    </record>
+    <record id="school_pj_view_form" model="ir.ui.view">
+        <field name="name">school.project.view.form</field>
+        <field name="model">school.pj</field>
+        <field name="arch" type="xml">
+            <form string="">
+            <header>
+                <field name="status" widget="statusbar" statusbar_visible="old,absent,present"/>
+            </header>
+                <sheet>
+                    <group >
+                        <group>
+                            <field name="roll_no"/>
+                            <field name="name"/>
+                            <field name="dob"/>
+                            <field name="father_name"/>
+                            <!-- <field name="mother_name"/> -->
+                            <field name="ph_no"/>  
+                        </group>
+                        <group>
+                            <field name="email" widget="email"/>
+                            <field name="address"/>
+                            <field name="role" widget = "selection" required ="True"/>
+                            <field name="state" widget = "selection" required = "True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="school_project_action" model="ir.actions.act_window">
+        <field name="name">School Project</field>
+        <field name="res_model">school.pj</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            
+        </field> -->
+    </record>
+    <menuitem
+        id="school_pj_root_menu"
+        name="School Project"
+        sequence="10"/>
+        <menuitem
+            id="student_menu"
+            name="School Project"
+            action="school_project_action"
+            parent="school_pj_root_menu"
+            sequence="10"/>
+
+</odoo>
