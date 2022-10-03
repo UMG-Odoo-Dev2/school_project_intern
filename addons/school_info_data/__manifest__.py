@@ -1,9 +1,9 @@
 {
-    'name' : 'School project Infomation',
+    'name' : 'School Info Data',
     'License' : 'LGPL-3',
     'depends': ['base'],
     'data' : [
-        'views/teacher_student_view.xml',
         'security/ir.model.access.csv',
-    ],
+        'views/views.xml',
+    ]
 }

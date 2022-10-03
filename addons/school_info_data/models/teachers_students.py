@@ -1,20 +1,18 @@
 from odoo import models,fields
 
-class teachers_students(models.Model):
-    _name = 'teachers.students'
-    _description = 'Info of studnts and teachers'
+class SchoolInfo(models.Model):
+    _name = "teachers.students"
+    _description = "Testing for my Odoo project"
 
     name = fields.Char()
+    avator = fields.Binary()
     father_name = fields.Char()
-    date_of_birth = fields.Date()
-    role = fields.Selection([('teacher', 'Teacher'), ('student', 'Student')], 'Role')
-    gender = fields.Selection([('male', 'Male'), ('female', 'Female')], 'Gender')
-    attendance = fields.Selection([('attend', 'Attend'), ('absence', 'Absence')], 'Attendance')
+    gender = fields.Selection([("male", "Male"), ("female", "Female")], "Gender")
     degree = fields.Char()
-    phone = fields.Char()
-    description = fields.Text()
+    email = fields.Char()
+    address = fields.Text()
+    role = fields.Selection([('teacher', 'Teacher'), ('student', 'Student')], 'Role')
     state = fields.Selection(selection=[
        ('teacher', 'Teacher'),
        ('student', 'Student'),
-   ], string='Status', required=True, readonly=True, copy=False,
-   tracking=True, default='student')
+   ], string='Status')
