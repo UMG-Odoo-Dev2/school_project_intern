@@ -5,7 +5,7 @@ class SchoolModel(models.Model):
     _name= "school.model"
     _description="School Management"
     name = fields.Char(string='Name', required=True)
-    photo = fields.Binary(string='Image')
+    photo = fields.Binary(string='Image', attachment=True)
     father_name=fields.Char()
     mother_name=fields.Char()
     age = fields.Integer(string='Age')
