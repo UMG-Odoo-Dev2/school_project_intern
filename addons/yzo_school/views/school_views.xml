@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Tree-->
+    <record id="school_model_view_tree" model="ir.ui.view">
+        <field name="name">School Tree</field>
+        <field name="model">yzo.school.model</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="roll_no" />
+                <field name="name" />
+                <field name="father_name" />
+                <field name="date_of_birth" />
+                <field name="phone_no" />
+                <field name="address" />
+                <field name="role" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!--Form-->
+    <record id="school_model_view_form" model="ir.ui.view">
+        <field name="name">School View</field>
+        <field name="model">yzo.school.model</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <field name="status" widget="statusbar" statusbar_visible="old,new,current"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="roll_no" />
+                            <field name="name" required="True"/> 
+                            <field name="father_name" required="True"/>    
+                        </group> 
+                        <group>
+                            <field name="date_of_birth" />
+                            <field name="phone_no" required="True"/>
+                            <field name="role" widget="selection" required="True"/>                           
+                        </group> 
+                    </group>
+                    <group>
+                        <field name="state" widget="selection" required="True"/>
+                    </group>
+                    <group>
+                        <field name="address" />
+                    </group>    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="model_stu_action" model="ir.actions.act_window">
+        <field name="name">Student or Teacher?</field>
+        <field name="res_model">yzo.school.model</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            
+        </field>-->
+    </record>
+
+    <menuitem
+        id="school_root_menu"
+        name="My School"
+        sequence="10"/>
+        <menuitem
+            id="model_stu_menu"
+            name="My School"
+            action="model_stu_action"
+            parent="school_root_menu"
+            sequence="10"/>
+
+</odoo>
