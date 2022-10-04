@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Calendar -->
+    <record id="school_view_calendar" model="ir.ui.view">
+        <field name="name">school.view.calendar</field>
+        <field name="model">leoschool.project.model</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendar" date_start="dob" color="role"
+            mode="month" hide_time="true" event_open_popup="true" quick_add="true" >
+                <field name="name" filters="1"/>
+                <field name="father_name"/>
+                <field name="state" filters="1"/>
+                <field name="address" />
+                <field name="role"/>
+            </calendar>
+        </field>
+    </record>
 
+    <!-- Kanban -->
+    <record id="school_view_kanban" model="ir.ui.view">
+        <field name="name">school.view.kanban</field>
+        <field name="model">leoschool.project.model</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="father_name"/>
+                <field name="state"/>
+                <field name="address" />
+                <field name="role"/>
+                <field name="id" />
+                <field name="photo" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img class="o_kanban_image_inner_pic" t-att-src="kanban_image('leoschool.project.model',
+                                'photo',record.id.raw_value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div>
+                                    <field name="state"/>
+                                </div>
+                                <div>
+                                    <field name="role"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="school_view_search" model="ir.ui.view">
+        <field name="name">school.view.search</field>
+        <field name="model">leoschool.project.model</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name"/>
+                <field name="father_name"/>
+                <field name="roll_no"/>
+                <field name="state"/>
+                <field name="dob"/>
+                <field name="role" />
+                <field name="phone_no"/>
+                <field name="address"/>
+                <!-- Filter -->
+                <separator/>
+                <filter name="role" string="Role | State" domain="[('state', '=', 'new'), ('role', '=', 'student')]" /> <!--Condition default is AND-->
+                <!-- <separator/>
+                <filter name="role" string="Teacher" domain="[('role', '=', 'teacher')]" /> -->
+                <separator/>
+                <filter name="inactive" string="Archived" domain="[('state', '=', 'old')]"/>
+                <!--Group_By-->
+                <filter name="role" string="Role" domain="[]" context="{'group_by': 'role'}" />
+                <separator/>
+                <filter name="state" string="State" domain="[]" context="{'group_by': 'state'}" />
+            </search>
+        </field>
+    </record>
+    <!-- Tree -->
     <record id="school_view_tree" model="ir.ui.view">
         <field name="name">school.view.tree</field>
         <field name="model">leoschool.project.model</field>
@@ -10,20 +92,21 @@
                 <field name="father_name" optional="show" />
                 <field name="roll_no" optional="show"/>
                 <field name="state" optional="show" />
-                <field name="dob" optional="show" />
+                <field name="dob" optional="hide" />
                 <field name="role" optional="show" />
                 <field name="phone_no" optional="hide"/>
                 <field name="address" optional="show" />
             </tree>
         </field>
     </record>
+    <!-- Form -->
     <record id="school_view_form" model="ir.ui.view">
         <field name="name">school.view.form</field>
         <field name="model">leoschool.project.model</field>
         <field name="arch" type="xml">
             <form string="">
                 <header>
-                    <field name="state" widget="statusbar" statusbar_visible="old,new,current"/>
+                    <field name="state" widget="statusbar" statusbar_visible="old,new,current" clickable="1"/>
                 </header>
                 <sheet>
                     <group>
@@ -48,7 +131,7 @@
     <record id="leo_school_action" model="ir.actions.act_window">
         <field name="name">School Table</field>
         <field name="res_model">leoschool.project.model</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,calendar,form,graph,kanban</field>
     </record>
     <menuitem
         id="school_root_menu"
