@@ -34,6 +34,40 @@
         </field>
     </record>
 
+
+     <record id="school_view_search" model="ir.ui.view">
+        <field name="name">Search</field>
+        <field name="model">school.model</field>
+        <field name="arch" type="xml">
+            <search string="Search...">
+                <field name="name"></field>
+                <field name="gender"></field>
+                <field name="school_dob"></field>
+                <field name="father_name"></field>
+                <field name="mother_name"></field>
+                <field name="ph_no"></field>
+
+                <!-- <filter name="state" string="State" domain="[('state', '=', 'new'), ('role', '=', 'student')]" /> -->
+                <!-- <filter name="name" filter_domain="[('name','ilike',self),'|',('gender','ilike',self),'|',('role','ilike',self)]" , string="All"/> -->
+                <field name="name" filter_domain="[('name','ilike',self),'|',('roll_num','ilike',self),'|',('father_name','ilike',self),'|', ('mother_name','ilike',self)]" string="All"/>
+
+
+                <!--Testing filter and group-->
+                <filter name="filter_female" string="Female" domain="[('gender', '=', 'female')]"></filter>
+                <filter name="filter_male" string="Male" domain="[('gender', '=', 'male')]"></filter>
+                <separator/>
+                <filter name="filter_role" string="Teacher" domain="[('role', '=', 'teacher')]"></filter>
+                <filter name="filter_role" string="Student" domain="[('role', '=', 'student')]"></filter>
+                <!-- <filter name="filter_state" string="State" domain="[('state', '=', 'old')]" context="{'group_by': 'state'}" /> -->
+                <group expand="0" string="Group By">
+                    <filter string="Role" name="group_by_role" context="{'group_by':'role'}"/>
+                    <filter string="Gender" name="group_by_gender" context="{'group_by':'gender'}"/>
+                </group>
+            </search>
+        </field>
+     </record>
+     
+    <!-- Tree View -->
     <record id="school_management_view_tree" model="ir.ui.view">
         <field name="name">school.tree</field>
         <field name="model">school.model</field>
@@ -56,11 +90,100 @@
         </field>
     </record> 
 
+    <!-- Graph View -->
+    <record id="school_view_graph" model="ir.ui.view">
+        <field name="name">school.graph</field>
+        <field name="model">school.model</field>
+        <field name="arch" type="xml">
+            <graph string="" type="bar">
+                <field name="name" optional="show"></field>
+                <field name="photo" optional="show" widget="image"></field>
+                <field name="father_name" optional="hide"/>
+                <field name="mother_name" optional="hide"/>
+                <field name="age" optional="hide"></field>
+                <field name="role" optional="show"></field>
+                <field name="state" optional="show"></field>
+                <field name="gender" optional="hide"></field>
+                <field name="school_dob" optional="show"></field>
+                <field name="school_blood_group" optional="hide"></field>
+                <field name="email" optional="show"/>
+                <field name="ph_no" optional="hide"/>
+                <field name="address" optional="show"/>
+            </graph>
+        </field>
+    </record>
+
+
+    <!-- Kanban View -->
+    <record id="school_view_kanban" model="ir.ui.view">
+        <field name="name">school.kanban</field>
+        <field name="model">school.model</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="photo"/>
+                <field name="father_name"/>
+                <field name="mother_name"/>
+                <field name="age"/>
+                <field name="role"/>
+                <field name="state"/>
+                <field name="id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img class="o_kanban_image_inner_pic" t-att-src="kanban_image('school.model',
+                                'photo',record.id.raw_value)"/>
+                                </div>
+                            </div>
+                            <!-- <div class="o_kanban_image">
+                                <field name="photo" nolabel="1" widget="image" class="oe_right oe_avatar"/>
+                            </div> -->
+
+        
+                            <div class="o_kanban_details d-flex flex-column">
+                                    <div>
+                                        <strong class="o_kanban_record_title">
+                                            <span><field name="name"></field></span>
+                                        </strong>
+                                    </div>    
+                                <div>
+                                    <ul>
+                                        <li>Father's Name: <field name="father_name"></field></li>
+                                        <li>Mother's Name: <field name="mother_name"></field></li>
+                                        <li>Age: <field name="age"></field></li>
+                                        <li>Role: <field name="role"></field></li>
+                                        <li>State: <field name="state"></field></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="school_view_pivot" model="ir.ui.view">
+        <field name="name">school.pivot</field>
+        <field name="model">school.model</field>
+        <field name="arch" type="xml">
+            <pivot string="" disable_linking="true">
+                <field name="gender" type="row"/>
+                <field name="role" type="column"/>
+                <field name="state" type="column"/>
+            </pivot>
+        </field>
+    </record>
+   
+
    
     <record id="action_school_management" model="ir.actions.act_window">
         <field name="name">School Management</field>
         <field name="res_model">school.model</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,graph,kanban,pivot</field>
     </record>
 
 

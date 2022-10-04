@@ -6,6 +6,8 @@ class YZO_School(models.Model):
 
     # avator=fields.Binary()
     # id=fields.Char("ID")
+    
+    avatar=fields.Binary("Photo")
     roll_no=fields.Char("Roll Number:")
     name=fields.Char("Name:",required=True)
     father_name=fields.Char("Father Name:")
@@ -22,12 +24,12 @@ class YZO_School(models.Model):
 #    ], string='Status', required=True, readonly=True, copy=False,
 #    tracking=True)
 
-    state=fields.Selection(
-        [('old','Old'),('new','New'),('current','Current')]
-    )
+    # state=fields.Selection(
+    #     [('old','Old'),('new','New'),('current','Current')],tracking=True
+    # )
 
-    status = fields.Selection(selection=[
+    state = fields.Selection(selection=[
         ('old', 'Old'),
         ('new', 'New'),
-        ('current', 'Current')], string='Status:', required=True, readonly=True, copy=False,tracking=True
-    )
+        ('current', 'Current')], string='State:', copy=False,tracking=True, default="current"
+    ) # required=True (Invalid Field Error)

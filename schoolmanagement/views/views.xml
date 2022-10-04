@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
    <record id="model_school_view_form" model="ir.ui.view">
       <field name="name">model_name.view.form</field>
       <field name="model">school.model</field>
@@ -17,18 +18,17 @@
                      <field name="father_name" />
                   </group>
                   <group>
-                     
                      <field name="mother_name" required="True"/>
                      <field name="country" />
                      <field name="date_of_birth" required="True"/>
                      <field name="ph_no"/>
                   </group>
-                  
                </group>
             </sheet>
          </form>
       </field>
    </record>
+
    <record id="school_view_tree" model="ir.ui.view">
       <field name="name">model_name.view.tree</field>
       <field name="model">school.model</field>

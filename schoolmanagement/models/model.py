@@ -24,7 +24,6 @@ class School(models.Model):
      date_of_birth=fields.Date()
      ph_no=fields.Integer()
     
-    
      state = fields.Selection(selection=[
           ('draft', 'Draft'),
           ('in_progress', 'In Progress'),
