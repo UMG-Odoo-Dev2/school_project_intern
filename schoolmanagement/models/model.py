@@ -23,15 +23,14 @@ class School(models.Model):
      mother_name=fields.Char("Mother Name")
      date_of_birth=fields.Date()
      ph_no=fields.Integer()
-     active=fields.Boolean(string="Active",default=True)
     
      state = fields.Selection(selection=[
           ('draft', 'Draft'),
           ('in_progress', 'In Progress'),
-          ('done', 'Done'),
           ('cancel', 'Cancelled'),
-          
-     ], string="Status")
+          ('done', 'Done'),
+     ], string='Status', required=True, readonly=True, copy=False,
+     tracking=True, default='draft')
      
      date_of_birth=fields.Date()
      avator=fields.Binary()

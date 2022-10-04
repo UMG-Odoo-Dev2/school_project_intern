@@ -6,6 +6,7 @@ class YZO_School(models.Model):
 
     # avator=fields.Binary()
     # id=fields.Char("ID")
+    
     avatar=fields.Binary("Photo")
     roll_no=fields.Char("Roll Number:")
     name=fields.Char("Name:",required=True)
