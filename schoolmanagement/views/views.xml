@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!--form view in odoo-->
+   <record id="model_school_view_form" model="ir.ui.view">
+      <field name="name">model_name.view.form</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <form string="">
+            <header>
+               <field name="state" widget="statusbar" nolabel="1" options="{'clickable':'1'}" statusbar_visible="draft,in_progress,done" />
+            </header>
+            <sheet>
+               <group>
+                  <group>
+                     <field name="name" required="True" />
+                     <field name="role" />
+                     <field name="status" required="True" />
+                     <field name="father_name" />
+                  </group>
+                  <group>
+                     <field name="mother_name" required="True" />
+                     <field name="country" />
+                     <field name="date_of_birth" required="True" />
+                     <field name="ph_no" />
+                     <field name="active" />
+                  </group>
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+   <!--graph view in odoo-->
+   <record id="school_view_graph" model="ir.ui.view">
+      <field name="name">school.model.graph</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <graph string="" type="bar">
+            <field name="name" />
+            <field name="role" />
+            <field name="status" />
+            <field name="country" />
+            <field name="father_name" />
+            <field name="mother_name" />
+            <field name="date_of_birth" />
+            <field name="ph_no" />
+         </graph>
+      </field>
+   </record>
+   <!--search-->
+   <record id="school_view_search" model="ir.ui.view">
+      <field name="name">model_name.view.search</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <search>
+            <field name="name" string="Name" filter_domain="['|',('name','ilike',self),('father_name','ilike',self),('mother_name','ilike',self)]" />
+            <field name="role" />
+            <field name="status" />
+            <field name="country" />
+            <field name="father_name" />
+            <field name="mother_name" />
+            <field name="date_of_birth" />
+            <field name="ph_no" />
+            <filter name="filter_student" string="Student" domain="[('role','=','student')]" />
+            <filter name="filter_teacher" string="Teacher" domain="[('role','=','teacher')]" />
+            <separator />
+            <filter name="filter_new" string="New" domain="[('status','=','new')]" />
+            <group expand="0" string="Group By">
+               <filter string="Role" name="group_by_role" context="{'group_by':'role'}" />
+               <filter string="Status" name="group_by_status" context="{'group_by':'status'}" />
+            </group>
+         </search>
+      </field>
+   </record>
+   <!--School tree view in odoo-->
+   <record id="school_view_tree" model="ir.ui.view">
+      <field name="name">model_name.view.tree</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <tree string="">
+            <field name="name" required="True" />
+            <field name="role" />
+            <field name="status" />
+            <field name="country" />
+            <field name="father_name" required="True" />
+            <field name="mother_name" />
+            <field name="date_of_birth" />
+            <field name="ph_no" />
+            <field name="state" />
+         </tree>
+      </field>
+   </record>
+   <!--kaban view odoo-->
+   <record id="model_name_view_kanban" model="ir.ui.view">
+      <field name="name">school.midel.view.kanban</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <kanban class="0_res_partner_kanban">
+            <field name="name" />
+            <field name="status" />
+            <templates>
+               <t t-name="kanban-box">
+                  <div t-attf-class="oe_kanban_global_click">
+                     <div class="oe_kanban_details">
+                        <strong class="o_kanban_record_title">
+                           <field name="name" />
+                        </strong>
+                        <div>
+                           <field name="status" />
+                        </div>
+                        <div>
+                           <field name="role" />
+                        </div>
+                        <div>
+                           <field name="father_name" />
+                        </div>
+                        <div>
+                           <field name="mother_name" />
+                        </div>
+                        <div>
+                           <field name="ph_no" />
+                        </div>
+                        <div>
+                           <field name="date_of_birth" />
+                        </div>
+                     </div>
+                  </div>
+               </t>
+            </templates>
+         </kanban>
+      </field>
+   </record>
+   <!--calendar view in odoo-->
+   <record id="school_model_calendar" model="ir.ui.view">
+      <field name="name">school.model.calendar</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <calendar string="school calendar" date_start="date_of_birth" color="name">
+            <field name="name" />
+         </calendar>
+      </field>
+   </record>
+   <!--pivot view in odoo-->
+   <record id="school_model_pivot" model="ir.ui.view">
+      <field name="name">school.model.pivot</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <pivot string="school pivot" disable_linking="true" sample="1">
+            <field name="name" string="Name" />
+         </pivot>
+      </field>
+   </record>
+   <!--school action-->
+   <record id="school_model_action" model="ir.actions.act_window">
+      <field name="name">School Management</field>
+      <field name="res_model">school.model</field>
+      <field name="view_mode">tree,form,graph,kanban,calendar,pivot</field>
+   </record>
+   <menuitem id="school_menu" name="School" sequence="10" />
+   <menuitem id="department_menu" name="Department" action="school_model_action" parent="school_menu" sequence="10" />
+</odoo>
