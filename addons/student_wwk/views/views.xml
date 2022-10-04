@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+      <record id="school_project_view_search" model="ir.ui.view">
+        <field name="name">school_project.view.search</field>
+        <field name="model">school.project</field>
+        <field name="arch" type="xml">
+            <search >
+                <field name="name" filter_domain="[('name','ilike',self),'|',('roll_num','ilike',self),'|',('father_name','ilike',self),'|', ('mother_name','ilike',self)]" string="All"/>
+                <field name="roll_num" />
+                <field name="gender" />
+                <field name="father_name" />
+                <field name="mother_name" />
+                <field name="ph_no" />
+                <field name="email" />
+                <field name="role" />
+                <field name="state"  />
+                <separator/>
+                <filter string="Male" name="filtered_male" domain="[('gender', '=', 'male')]"/>
+                <filter string="Female" name="filtered_female" domain="[('gender', '=', 'female')]"/>
+                <separator/>
+                <filter string="Presence" name="filtered_presence" domain="[('state', '=', 'presence')]"/>
+                <filter string="Absence" name="filtered_absence" domain="[('state', '=', 'absence')]"/>
+                <filter string="Former" name="filtered_former" domain="[('state', '=', 'former')]"/>
+                <separator/>
+                <filter string="Student" name="filtered_student" domain="[('role', '=', 'student')]"/>
+                <filter string="Teacher" name="filtered_teacher" domain="[('role', '=', 'teacher')]"/>
+                <separator/>
+                <group expand="0" string="GP">
+                  <filter name="role" string="Role" domain="[]" context="{'group_by': 'role'}" /> 
+                  <filter name="state" string="State" domain="[]" context="{'group_by': 'state'}" />
+                  <filter name="gender" string="Gender" domain="[]" context="{'group_by': 'gender'}" /> 
+                </group>
+                
+            </search>
+        </field>
+      </record>
 
 
 
-    <record id="school_project_action" model="ir.actions.act_window">
-        <field name="name">School Data</field>
-        <field name="res_model">school.project</field>
-        <field name="view_mode">tree,form</field>
-        <!-- <field name="domain">[]</field>
-        <field name="context">{}</field>
-        <field name="help" type="html">
-            
-        </field> -->
-    </record>
+
     <menuitem
         id="school_project_root_menu"
         name="School Project"
@@ -36,13 +61,15 @@
                 <sheet>
                     <group>
                     <group>
+                        <field name="avator"  widget="image"/>
                         <field name="name" />
                         <field name="roll_num" />
-                        <field name="dob" />
+                        <field name="gender" />
                         <field name="father_name" />
                         <field name="mother_name" />
                     </group>
                     <group>
+                        <field name="dob" />
                         <field name="ph_no" />
                         <field name="email" widget="email"/>
                         <field name="role" widget="Selection" required="True"/>
@@ -59,8 +86,10 @@
         <field name="model">school.project</field>
         <field name="arch" type="xml">
             <tree string="">
+                <field name="avator" widget="image" class="oe_avatar"/>
                 <field name="name" optional="show"/>
                 <field name="roll_num" optional="show"/>
+                <field name="gender" optional="show"/>
                 <field name="dob" optional="show"/>
                 <field name="father_name" optional="show"/>
                 <field name="mother_name" optional="show"/>
@@ -73,6 +102,72 @@
         </field>
     </record>
 
+    <record id="school_project_view_pivot_website" model="ir.ui.view">
+        <field name="name">school.project.view.pivot.website</field>
+        <field name="model">school.project</field>
+        <field name="arch" type="xml">
+            <pivot string="School Data" >
+                <field name="gender" type="row"/>
+                <field name="role" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="school_project_view_kanban" model="ir.ui.view">
+        <field name="name">school.project.view.kanban</field>
+        <field name="model">school.project</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="name" group_delete="false">
+            <!-- <progressbar field="kanban_state" colors='{"done": "success", "blocked": "danger", "normal": "muted"}'/> -->
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <div>
+                                <field name="avator" nolabel="1" widget="image" class="oe_left oe_avatar"/>
+                            </div>
+
+                            <div>
+                                <strong><field name="name" /></strong>
+                                <ul>
+                                    <li><field name="roll_num" /></li>
+                                    <li><field name="gender" /></li>
+                                    <li><field name="dob" /></li>
+                                    <li><field name="ph_no" /></li>
+                                    <li><field name="email" /></li>
+                                </ul>  
+                            </div>
+                           
+                        </div>    
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="school_project_view_graph" model="ir.ui.view">
+        <field name="name">school.project.view.graph</field>
+        <field name="model">school.project</field>
+        <field name="arch" type="xml">
+            <graph string="" type="bar">
+                <field name="gender"/>
+                <field name="role"/>
+                <field name="state"/>
+                
+            </graph>
+        </field>
+    </record>
+
+
+    <record id="school_project_action" model="ir.actions.act_window">
+        <field name="name">School Data</field>
+        <field name="res_model">school.project</field>
+        <field name="view_mode">tree,form,pivot,kanban,graph</field>
+        <!-- <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            
+        </field> -->
+    </record>
 
 
 </odoo>
