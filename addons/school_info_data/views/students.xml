@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="teachers_students_filter_action" model="ir.actions.act_window">
+        <field name="name">List of Student</field>
+        <field name="res_model">teachers.students</field>
+        <field name="view_mode">tree,form,pivot,kanban,graph,calendar</field>
+        <field name="domain">"[('state', '=', 'student')]"</field>
+    </record>
+
+    <menuitem
+        id="student_sub_menu"
+        name="Student"
+        action="teachers_students_filter_action"
+        parent="teachers_students_root_menu"
+        sequence="10"/>
+
+</odoo>
