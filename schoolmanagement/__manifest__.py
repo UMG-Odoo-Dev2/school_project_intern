@@ -8,12 +8,17 @@
         School_Management
     """,
     'depends':[
-        'base'
+        'mail'
     ],
     'data':[
          
         #'views/templates.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
+        'views/departments.xml',
+        'views/appointment.xml',
+        'views/subject.xml',
+        'views/menu.xml',
+
     ]
 }

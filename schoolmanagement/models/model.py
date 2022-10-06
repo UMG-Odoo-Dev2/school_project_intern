@@ -1,8 +1,10 @@
 from odoo import models,fields
 class School(models.Model):
      _name='school.model'
+     _inherit=['mail.thread','mail.activity.mixin']
      _description='hello school'
      name=fields.Char("Name")
+    
      role = fields.Selection([
           ('student','Student'),
           ('teacher','Teacher')
@@ -21,18 +23,23 @@ class School(models.Model):
      
      father_name=fields.Char("Father Name")
      mother_name=fields.Char("Mother Name")
+     degree=fields.Char("Degree")
      date_of_birth=fields.Date()
      ph_no=fields.Integer()
      active=fields.Boolean(string="Active",default=True)
     
      state = fields.Selection(selection=[
-          ('draft', 'Draft'),
-          ('in_progress', 'In Progress'),
-          ('done', 'Done'),
-          ('cancel', 'Cancelled'),
+          ('old', 'Old'),
+          ('new', 'new'),
+          ('current', 'current'),
           
      ], string="Status")
      
      date_of_birth=fields.Date()
      avator=fields.Binary()
      description=fields.Text()
+     priority=fields.Selection([
+      ('0','Normal'),
+      ('1','Low'),
+      ('2','High'),
+      ('3','Very High')],string="Priority")

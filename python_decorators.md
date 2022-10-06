@@ -217,7 +217,7 @@ In the above example, you may notice a keen difference in the parameters of the 
 
 In simpler terms chaining decorators means decorating a function with multiple decorators.
 
-**Example: ***
+**Example:**
 ```bash
     # code for testing decorator chaining
     def decor1(func):
