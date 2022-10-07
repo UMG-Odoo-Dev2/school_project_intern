@@ -5,6 +5,8 @@
     'depends': ['base'],
     'data': [
       'security/ir.model.access.csv',
-      'views/school_view.xml'
+      'views/subject_view.xml',
+      'views/exam_view.xml',
+      'views/school_view.xml',
     ]
 }

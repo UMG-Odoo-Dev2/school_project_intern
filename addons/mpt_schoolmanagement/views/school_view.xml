@@ -7,22 +7,24 @@
         <field name="arch" type="xml">
             <form string="School">
                 <header>
-                    <field name="status" widget="statusbar" statusbar_visible="old,new,current"/>
+                    <field name="state" widget="statusbar" nolabel="1" options="{'clickable':'1'}" statusbar_visible="old,new,current"/>
                 </header>
                 <sheet>
                     <group>
                     <group>
                         <field name="name"/>
                         <field name="photo" widget="image" class="oe_avatar"/> 
+                        <field name="gender"/>
                         <field name="father_name"/>
                         <field name="mother_name"/>
-                        <field name="age"/>
                         <field name="role"/>
+                        <!-- <field name="subject_id"/> -->
+                        <!-- <field name="subject_id" widget="many2many_tags"/> -->
                     </group>
                     <group>
-                        <field name="state"/>
-                        <field name="gender"/>
-                        <field name="school_dob"/>  
+                        <!-- <field name="state"/> -->
+                        <field name="school_dob"/> 
+                        <field name="age"/> 
                         <field name="school_blood_group"/> 
                         <field name="email"/>
                         <field name="ph_no"/>
@@ -63,6 +65,13 @@
                     <filter string="Role" name="group_by_role" context="{'group_by':'role'}"/>
                     <filter string="Gender" name="group_by_gender" context="{'group_by':'gender'}"/>
                 </group>
+
+                <searchpanel>
+                    <field name="role" icon="fa-user-o"/>
+                    <field name="state" icon="fa-user-o"/>
+                </searchpanel>
+
+                
             </search>
         </field>
      </record>
@@ -73,16 +82,18 @@
         <field name="model">school.model</field>
         <field name="arch" type="xml">
             <tree string="">
-                <field name="name" optional="show"></field>
-                <field name="photo" optional="show" widget="image"></field>
+                <field name="name" optional="show"/>
+                <field name="photo" optional="show" widget="image"/>
+                 <field name="gender" optional="hide"/>
                 <field name="father_name" optional="hide"/>
                 <field name="mother_name" optional="hide"/>
-                <field name="age" optional="hide"></field>
-                <field name="role" optional="show"></field>
-                <field name="state" optional="show"></field>
-                <field name="gender" optional="hide"></field>
-                <field name="school_dob" optional="show"></field>
-                <field name="school_blood_group" optional="hide"></field>
+                <field name="role" optional="show"/>
+                <field name="state" optional="show"/>
+                <!-- <field name="subject_id"></field> -->
+                <!-- <field name="subject_id" widget="many2many_tags"/> -->
+                <field name="school_dob" optional="show"/>
+                <field name="age" optional="hide"/>
+                <field name="school_blood_group" optional="hide"/>
                 <field name="email" optional="show"/>
                 <field name="ph_no" optional="hide"/>
                 <field name="address" optional="show"/>
@@ -96,16 +107,16 @@
         <field name="model">school.model</field>
         <field name="arch" type="xml">
             <graph string="" type="bar">
-                <field name="name" optional="show"></field>
-                <field name="photo" optional="show" widget="image"></field>
+                <field name="name" optional="show"/>
+                <field name="photo" optional="show" widget="image"/>
+                <field name="gender" optional="hide"/>
                 <field name="father_name" optional="hide"/>
                 <field name="mother_name" optional="hide"/>
-                <field name="age" optional="hide"></field>
-                <field name="role" optional="show"></field>
-                <field name="state" optional="show"></field>
-                <field name="gender" optional="hide"></field>
-                <field name="school_dob" optional="show"></field>
-                <field name="school_blood_group" optional="hide"></field>
+                <field name="role" optional="show"/>
+                <field name="state" optional="show"/>
+                <field name="school_dob" optional="show"/>
+                <field name="age" optional="hide"/>
+                <field name="school_blood_group" optional="hide"/>
                 <field name="email" optional="show"/>
                 <field name="ph_no" optional="hide"/>
                 <field name="address" optional="show"/>
@@ -195,6 +206,18 @@
             id="school_management_menu"
             name="Campus"
             action="action_school_management"
+            parent="school_management_root_menu"
+            sequence="10"/>
+        <menuitem
+            id="subject_menu"
+            name="Subject"
+            action="subject_action"
+            parent="school_management_root_menu"
+            sequence="10"/>
+        <menuitem
+            id="exam_menu"
+            name="Examination"
+            action="exam_action"
             parent="school_management_root_menu"
             sequence="10"/>
 
