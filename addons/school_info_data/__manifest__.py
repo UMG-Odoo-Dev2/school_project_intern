@@ -5,8 +5,8 @@
     'data' : [
         'security/ir.model.access.csv',
         'views/views.xml',
-        'views/students.xml',
-        'views/teachers.xml',
         'views/subjects.xml',
+        'views/exam.xml',
+        'views/scores.xml',
     ]
 }

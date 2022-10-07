@@ -4,7 +4,7 @@
     <record id="subject_management_action" model="ir.actions.act_window">
         <field name="name">List of Subject</field>
         <field name="res_model">subject.management</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban,pivot</field>
     </record>
 
     <menuitem
@@ -22,10 +22,11 @@
                 <sheet>
                     <group>
                         <field name="subjects" />
-                        <field name="subject_id" string = "Sub_ID"/>
                         <field name="chapter" />
                         <field name="start_date" />
                         <field name="end_date" />
+                        <field name="fail_mark" />
+                        <field name="pass_mark" />
                     </group>
                 </sheet>
             </form>
@@ -38,11 +39,45 @@
         <field name="arch" type="xml">
             <tree string="">
                 <field name="subjects" optional = "show"/>
-                <field name="subject_id" optional = "show"/>
                 <field name="chapter" optional = "show"/>
                 <field name="start_date" optional = "show"/>
                 <field name="end_date" optional = "show"/>
+                <field name="fail_mark" optional = "show"/>
+                <field name="pass_mark" optional = "show"/>
             </tree>
+        </field>
+    </record>
+
+    <record id="subject_management_view_kanban" model="ir.ui.view">
+        <field name="name">subject_management.view.kanban</field>
+        <field name="model">subject.management</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div>
+                            <ul>
+                                <li>Subject :<field name="subjects" string = 'Subject : '/></li>
+                                <li>Chapter :<field name="chapter" string = 'Chapter : '/></li>
+                                <li>Start_Date :<field name="start_date" string = 'Start_Date : '/></li>
+                                <li>End_Date :<field name="end_date" string = 'End_Date : '/></li>
+                                <li>Fail :<field name="fail_mark" string = 'Fail : '/></li>
+                                <li>Pass :<field name="pass_mark" string = 'Pass : '/></li>
+                            </ul>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="subject_management_view_pivot" model="ir.ui.view">
+        <field name="name">subject_management.view.pivot</field>
+        <field name="model">subject.management</field>
+        <field name="arch" type="xml">
+            <pivot string="" disable_linking="true">
+                <field name="subjects" />
+            </pivot>
         </field>
     </record>
 

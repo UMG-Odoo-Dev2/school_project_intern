@@ -40,8 +40,9 @@
                             <field name="gender" />
                             <field name="degree" attrs="{'invisible': [('state', '=', 'student')]}"/>
                             <field name="email" attrs="{'invisible': [('state', '=', 'student')]}"/>
-                            <field name="subject_id" attrs="{'invisible': [('state', '=', 'student')]}"/>
+                            <field name="subjects" attrs="{'invisible': [('state', '=', 'student')]}"/>
                             <field name="address" />
+                            <field name="attendance" />
                         </group>
                     </group>
                 </sheet>
@@ -63,6 +64,8 @@
                 <field name="degree" optional = "show"/>
                 <field name="email" optional = "show"/>
                 <field name="address" optional = "show"/>
+                <field name="subjects" optional = "show"/>
+                <field name="attendance" optional = "show"/>
             </tree>
         </field>
     </record>

@@ -14,9 +14,14 @@ class SchoolInfo(models.Model):
     degree = fields.Char()
     email = fields.Char()
     address = fields.Text()
+    student_ids = fields.Char()
+    score = fields.Integer()
+    teacher_id = fields.Char()
+    subject_id = fields.Char()
     state = fields.Selection(selection=[
           ('teacher', 'Teacher'),
           ('student', 'Student'),
-     ], string="Status")
+     ], string="Status", required = True, default = 'student')
     active = fields.Boolean(string = "Active", default = "True")
-    subject_id = fields.Many2one('subject.management', string = "Sub_id")
+    subjects = fields.Many2one('subject.management', string = "Subjects")
+    attendance = fields.Selection([("attend", "Attendance"), ("absence", "Absence"), ("leave", "Leave")], required = True)

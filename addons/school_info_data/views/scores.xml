@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="exam_scores_action" model="ir.actions.act_window">
+        <field name="name">List of Student Scroes</field>
+        <field name="res_model">exam.scores</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="exam_scores_sub_menu"
+        name="Scores"
+        action="exam_scores_action"
+        parent="teachers_students_root_menu"
+        sequence="10"/>
+
+    <record id="exam_scores_view_form" model="ir.ui.view">
+        <field name="name">exam_scores.view.form</field>
+        <field name="model">exam.scores</field>
+        <field name="arch" type="xml">
+            <form string="Scores">
+                <sheet>
+                    <group>
+                        <field name="exam_name" />
+                        <field name="student_id" domain = "[('state', '=', 'student')]"/>
+                        <field name="subject_id" />
+                        <field name="teacher_id" widget = "many2many_tags" domain = "[('state', '=', 'teacher')]"/>
+                        <field name="score" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="exam_scores_view_tree" model="ir.ui.view">
+        <field name="name">exam_scores.view.tree</field>
+        <field name="model">exam.scores</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="exam_name" optional = "show"/>
+                <field name="student_id" optional = "show"/>
+                <field name="subject_id" optional = "show"/>
+                <field name="teacher_id" optional = "show"/>
+                <field name="score" optional = "show"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
