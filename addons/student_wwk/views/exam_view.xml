@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="school_exam_view_form" model="ir.ui.view">
+        <field name="name">school_exam.view.form</field>
+        <field name="model">school.exam</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="subject_id" />
+                    </group>
+                    <group>
+                        <field name="teacher_id" domain="[('role','=','teacher'),('state','=','presence')]"/>
+                    </group>
+                    <notebook>
+                        <page name="stu" string="Student">
+                            <!-- <field name="student_id" >
+                                
+                                <tree string="">
+                                      <field name="student_ids" />
+                                      <field name="score" />   
+                                </tree>
+                                <form string="">
+                                    <sheet>
+                                        <group>
+                                            <field name="student_ids" domain="[('role','=','student'),('state','=','presence')]"/>     
+                                        </group>
+                                        <group >
+                                            <field name="score" /> 
+                                        </group>
+                                        </sheet>
+                                </form>
+                            
+                            </field> -->
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="school_exam_action" model="ir.actions.act_window">
+        <field name="name">Exam</field>
+        <field name="res_model">school.exam</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            
+        </field> -->
+    </record>
+    <menuitem
+        id="school_exam_menu"
+        name="Exam"
+        action="school_exam_action"
+        parent="school_project_root_menu"
+        sequence="10"/>
+
+</odoo>

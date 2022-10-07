@@ -30,24 +30,18 @@
                   <filter name="state" string="State" domain="[]" context="{'group_by': 'state'}" />
                   <filter name="gender" string="Gender" domain="[]" context="{'group_by': 'gender'}" /> 
                 </group>
+
+                <searchpanel> 
+                    <field name = "role" icon = "fa-user-o" /> 
+                    <field name = "state" icon = "fa-user-o" />
+                </searchpanel> 
                 
             </search>
         </field>
       </record>
 
 
-
-
-    <menuitem
-        id="school_project_root_menu"
-        name="School Project"
-        sequence="10"/>
-    <menuitem
-        id="school_project_sub_menu"
-        name="Student"
-        action="school_project_action"
-        parent="school_project_root_menu"
-        sequence="10"/>
+    
 
     <record id="student_view_form" model="ir.ui.view">
         <field name="name">school_project.view.form</field>
@@ -56,24 +50,28 @@
             <form string="">
 
             <header>
-                <field name="status" widget="statusbar" statusbar_visible="presence,absence,former"/>
+                <field name="state" widget="statusbar" nolabel="1" options="{'clickable':'1'}" statusbar_visible="presence,absence,former"/>
             </header>
                 <sheet>
                     <group>
                     <group>
-                        <field name="avator"  widget="image"/>
+                        <field name="avator"  widget="image" class="oe_avatar"/>
                         <field name="name" />
-                        <field name="roll_num" />
                         <field name="gender" />
                         <field name="father_name" />
                         <field name="mother_name" />
+                        <field name="role" widget="Selection" required="True"/>
+                        
                     </group>
                     <group>
-                        <field name="dob" />
-                        <field name="ph_no" />
-                        <field name="email" widget="email"/>
-                        <field name="role" widget="Selection" required="True"/>
-                        <field name="state" widget="Selection" required="True"/>
+                        <field name="dob"  attrs="{'invisible':[('role','=','teacher')]}"/>
+                        <field name="roll_num" attrs="{'invisible':[('role','=','teacher')]}"/>
+                        <field name ="teacher_num" attrs="{'invisible':[('role','=','student')]}"/>
+                        <field name="ph_no" attrs="{'invisible':[('role','=','teacher')]}"/>
+                        <field name="email" widget="email" attrs="{'invisible':[('role','=','teacher')]}"/>
+                        <!-- <field name="state" widget="Selection" required="True"/> -->
+                        <field name="subject_id" attrs="{'invisible':[('role','=','student')]}"/>
+                        <field name="active" invisible="1"/>
                     </group>    
                     </group>
                 </sheet>
@@ -89,12 +87,13 @@
                 <field name="avator" widget="image" class="oe_avatar"/>
                 <field name="name" optional="show"/>
                 <field name="roll_num" optional="show"/>
+                <field name="teacher_num" optional="show"/>
                 <field name="gender" optional="show"/>
                 <field name="dob" optional="show"/>
                 <field name="father_name" optional="show"/>
                 <field name="mother_name" optional="show"/>
-                <field name="ph_no" optional="show"/>
-                <field name="email" optional="show"/>
+                <field name="ph_no" optional="hide"/>
+                <field name="email" optional="hide"/>
                 <field name="role" optional="show"/>
                 <field name="state" optional="show"/>
                 
@@ -156,18 +155,60 @@
             </graph>
         </field>
     </record>
-
-
-    <record id="school_project_action" model="ir.actions.act_window">
+        <record id="school_project_action" model="ir.actions.act_window">
         <field name="name">School Data</field>
         <field name="res_model">school.project</field>
         <field name="view_mode">tree,form,pivot,kanban,graph</field>
-        <!-- <field name="domain">[]</field>
-        <field name="context">{}</field>
-        <field name="help" type="html">
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_filtered_student':1}</field>
+        <!-- <field name="help" type="html">
             
         </field> -->
     </record>
 
+    <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">school.project</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('role','=','student')]</field>
+        <field name="context">{'default_role':'student'}</field>
+        <!-- <field name="help" type="html">
+            
+        </field> -->
+    </record>
+
+    <record id="teacher_action" model="ir.actions.act_window">
+        <field name="name">Teacher</field>
+        <field name="res_model">school.project</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('role','=','teacher')]</field>
+        <field name="context">{'default_role':'teacher'}</field>
+        <!-- <field name="help" type="html">
+            
+        </field> -->
+    </record>
+    
+    <menuitem
+        id="school_project_root_menu"
+        name="School Project"
+        sequence="10"/>
+    <menuitem
+        id="school_project_sub_menu"
+        name="School Data"
+        action="school_project_action"
+        parent="school_project_root_menu"
+        sequence="10"/>
+    <menuitem
+        id="student_menu"
+        name="Student"
+        action="student_action"
+        parent="school_project_sub_menu"
+        sequence="10"/> 
+    <menuitem
+        id="teacher_menu"
+        name="Teacher"
+        action="teacher_action"
+        parent="school_project_sub_menu"
+        sequence="10"/>
 
 </odoo>
