@@ -7,6 +7,8 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/school_mainview.xml'
+        'views/school_mainview.xml',
+        'views/subject_view.xml',
+        'views/exam_view.xml'
     ]
 }

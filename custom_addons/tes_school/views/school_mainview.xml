@@ -14,7 +14,6 @@
                 <field name="address" />
                 <field name="gender" />
                 <field name="role" />
-                <field name="status" />
                 <field name="state" />
 
                 <!-- <filter name="state" string="State" domain="['|',('state', '=', 'new'),('gender','=','male')]" /> -->
@@ -38,6 +37,10 @@
                     <filter string="Role" name="group_by_role" context="{'group_by':'role'}"/>
                     
                 </group>
+                <searchpanel>
+                    <field name="role" icon="fa-user-o" />
+                    <field name="state" icon = "fa-user-o" />
+                </searchpanel>
             </search>
         </field>
     </record>
@@ -55,8 +58,7 @@
                 <field name="address" />
                 <field name="gender" />
                 <field name="role"/>
-                <!-- <field name="status" optional = "show"/> -->
-                <field name="state" optional = "show"/>
+                <field name="state"/>
             </graph>
         </field>
     </record>
@@ -115,11 +117,11 @@
                 <field name="dob" />
                 <field name="father_name" />
                 <field name="ph_no" />
+                <!-- <field name="subject_id" /> -->
                 <field name="email" />
                 <field name="address" />
                 <field name="gender" />
                 <field name="role" optional = "show"/>
-                <field name="status" optional = "show"/>
                 <field name="state" optional = "show"/>
             </tree>
         </field>
@@ -130,25 +132,26 @@
         <field name="arch" type="xml">
             <form string="">
             <header>
-                <field name="status" widget="statusbar" statusbar_visible="old,new,current"/>
+                <field name="state" widget="statusbar" nolable="1" options="{'clickable':'1'}" statusbar_visible="old,new,current"/>
             </header>
                 <sheet>
                     <group >
                         <group>
                             <!-- <field name="roll_no"/> -->
-                            <field name="avatar" widget="image" />
+                            <field name="avatar" widget="image" class="oe_avatar" />
                             <field name="name"/>
                             <field name="dob"/>
                             <field name="father_name"/>
                             <field name="ph_no"/>  
-                            <field name="email" widget="email"/>
                         </group>
                         <group>
-                           
+                            <!-- <field name="subject_id" /> -->
+                            <!-- <field name="subject_id" widget="many2many_tags"/> -->
+                            <field name="email" widget="email"/>
                             <field name="address"/>
                             <field name="gender" />
                             <field name="role" widget = "selection" required ="True"/>
-                            <field name="state" widget = "selection" required = "True"/>
+                            <!-- <field name="active" invisible="1" /> -->
                         </group>
                     </group>
                 </sheet>
@@ -159,9 +162,29 @@
         <field name="name">School Project</field>
         <field name="res_model">school.pj</field>
         <field name="view_mode">tree,form,graph,kanban,pivot</field>
-        <!-- <field name="domain">[]</field>
-        <field name="context">{}</field> -->
+        <!-- <field name="domain">[]</field> -->
+        <!-- <field name="context">{}</field> -->
         <!-- <field name="help" type="html">
+            
+        </field> -->
+    </record>
+    <record id="student_menu_action" model="ir.actions.act_window">
+        <field name="name">Student</field>
+        <field name="res_model">school.pj</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[("role","=","student")]</field>
+        <!-- <field name="context">{}</field>
+        <field name="help" type="html">
+            
+        </field> -->
+    </record>
+    <record id="teacher_menu_action" model="ir.actions.act_window">
+        <field name="name">Teacher</field>
+        <field name="res_model">school.pj</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[("role","=","teacher")]</field>
+        <!-- <field name="context">{}</field>
+        <field name="help" type="html">
             
         </field> -->
     </record>
@@ -170,10 +193,22 @@
         name="School Project"
         sequence="10"/>
         <menuitem
-            id="student_menu"
+            id="school_menu"
             name="School Project"
-            action="school_project_action"
             parent="school_pj_root_menu"
-            sequence="10"/>
-
+            sequence="1"/>
+            <menuitem
+                id="student_menu"
+                name="Student"
+                action="student_menu_action"
+                parent="school_menu"
+                sequence="10"/>
+            <menuitem
+                id="teacher_menu"
+                name="Teacher"
+                action="teacher_menu_action"
+                parent="school_menu"
+                sequence="10"/>
+       
+        
 </odoo>

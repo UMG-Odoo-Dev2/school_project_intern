@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_school_pj,school.pj,model_school_pj,,1,1,1,1
+access_subject_model,subject.model,model_subject_model,,1,1,1,1
+access_exam_model,exam.model,model_exam_model,,1,1,1,1
+access_school_exam_line,school.exam.line,model_school_exam_line,,1,1,1,1
