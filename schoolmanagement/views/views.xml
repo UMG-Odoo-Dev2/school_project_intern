@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+   <record id="model_school_view_form" model="ir.ui.view">
+      <field name="name">model_name.view.form</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <form string="">
+            <header>
+               <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done" />
+            </header>
+            <sheet>
+               <group>
+                  <group>
+                     <field name="name" required="True" />
+                     <field name="role" />
+                     <field name="status" required="True" />
+                     <field name="father_name" />
+                  </group>
+                  <group>
+                     
+                     <field name="mother_name" required="True"/>
+                     <field name="country" />
+                     <field name="date_of_birth" required="True"/>
+                     <field name="ph_no"/>
+                  </group>
+                  
+               </group>
+            </sheet>
+         </form>
+      </field>
+   </record>
+   <record id="school_view_tree" model="ir.ui.view">
+      <field name="name">model_name.view.tree</field>
+      <field name="model">school.model</field>
+      <field name="arch" type="xml">
+         <tree string="">
+            <field name="name" required="True" />
+            <field name="role" />
+            <field name="status" />
+            <field name="country"/>
+            <field name="father_name" required="True" />
+            <field name="mother_name" />
+            <field name="date_of_birth"/>
+            <field name="ph_no"/>
+            
+            <field name="state"/>
+         </tree>
+      </field>
+   </record>
+   <record id="school_model_action" model="ir.actions.act_window">
+      <field name="name">School Management</field>
+      <field name="res_model">school.model</field>
+      <field name="view_mode">tree,form</field>
+   </record>
+   <menuitem id="school_menu" name="School" sequence="10" />
+   <menuitem id="department_menu" name="Department" action="school_model_action" parent="school_menu" sequence="10" />
+</odoo>
