@@ -5,9 +5,11 @@ from odoo import fields,models
 class Subject(models.Model):
     _name = "subject.model"
     _description = "Subject"
-    _rec_name = 'subjects'
+    # _rec_name = 'teacher_id'
+    _rec_name = 'subject_id'
 
     subjects = fields.Char("Subject:")
+    teacher_id = fields.Many2one("school.pj",string="Teacher Name:")
     subject_id = fields.Char()
     # name = fields.Char("Subject:")
    

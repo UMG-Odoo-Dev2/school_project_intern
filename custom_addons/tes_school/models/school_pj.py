@@ -12,9 +12,9 @@ class School(models.Model):
     father_name = fields.Char("Father Name:")
     ph_no = fields.Char("Phone Number:")
 
-    student_ids = fields.Char()
-    subject_id = fields.Many2one('subject.model',string="Subject:")
-    teacher_id = fields.Char()
+    # student_ids = fields.Char()
+    # subject_id = fields.Many2one('subject.model',string="Subject:")
+    # teacher_id = fields.Char()
 
     email = fields.Char("Email:")
     address = fields.Text("Address:")

@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree string="">
                 <field name="subjects" />
+                <field name="teacher_id" />
             </tree>
         </field>
     </record>
@@ -17,7 +18,12 @@
             <form string="">
                 <sheet>
                     <group>
-                        <field name="subjects" required="True"/>
+                        <group>
+                            <field name="subjects" required="True"/>
+                        </group>
+                        <group>
+                            <field name="teacher_id" required="True" domain="[('role','=','teacher'),('state','=','current')]"/>
+                        </group>
                     </group>
                 </sheet>
             </form>
