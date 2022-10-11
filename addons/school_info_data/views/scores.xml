@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="exam_scores_action" model="ir.actions.act_window">
         <field name="name">List of Student Scroes</field>
         <field name="res_model">exam.scores</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,pivot</field>
     </record>
-
     <menuitem
         id="exam_scores_sub_menu"
         name="Scores"
         action="exam_scores_action"
         parent="teachers_students_root_menu"
         sequence="10"/>
-
     <record id="exam_scores_view_form" model="ir.ui.view">
         <field name="name">exam_scores.view.form</field>
         <field name="model">exam.scores</field>
         <field name="arch" type="xml">
-            <form string="Scores">
+            <form string="">
                 <sheet>
                     <group>
-                        <field name="exam_name" />
-                        <field name="student_id" domain = "[('state', '=', 'student')]"/>
-                        <field name="subject_id" />
-                        <field name="teacher_id" widget = "many2many_tags" domain = "[('state', '=', 'teacher')]"/>
-                        <field name="score" />
+                        <group>
+                            <group>
+                                <field name="student_ids" domain = "[('state', '=', 'student')]"/>
+                            </group>
+                            <group>
+                                <field name="exam_ids"/>
+                            </group>
+                            <notebook>
+                                <page string="Subject List" name="Subjects">
+                                    <field name="subject_ids">
+                                        <tree editable="bottom">
+                                            <field name="subject_id"/>
+                                            <field name="score"/>
+                                            <field name="status"/>
+                                            <field name="exam_id"/>
+                                            <field name="teacher_id"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <group>
+                                                    <field name="subject_id" />
+                                                </group>
+                                                <group>
+                                                    <field name="score" />
+                                                </group>
+                                                <group>
+                                                    <field name="status" />
+                                                </group>
+                                                <group>
+                                                    <field name="exam_id" />
+                                                </group>
+                                                <group>
+                                                    <field name="teacher_id" />
+                                                </group>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
                     </group>
                 </sheet>
             </form>
@@ -37,13 +69,11 @@
         <field name="model">exam.scores</field>
         <field name="arch" type="xml">
             <tree string="">
-                <field name="exam_name" optional = "show"/>
-                <field name="student_id" optional = "show"/>
-                <field name="subject_id" optional = "show"/>
-                <field name="teacher_id" optional = "show"/>
-                <field name="score" optional = "show"/>
+                <field name="student_ids" />
+                <field name="exam_ids" />
             </tree>
         </field>
     </record>
 
+    
 </odoo>

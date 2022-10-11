@@ -10,5 +10,4 @@ class Subject(models.Model):
     chapter = fields.Integer()
     start_date = fields.Date()
     end_date = fields.Date()
-    fail_mark = fields.Integer()
-    pass_mark = fields.Integer()
+    

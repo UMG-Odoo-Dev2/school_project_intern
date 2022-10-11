@@ -3,3 +3,5 @@ access_teachers_students,teachers_students,model_teachers_students,,1,1,1,1
 access_subject_managemnet,subject_management,model_subject_management,,1,1,1,1
 access_exam_info,exam_info,model_exam_info,,1,1,1,1
 access_exam_scores,exam_scores,model_exam_scores,,1,1,1,1
+access_exam_scores,exam_scores,model_exam_scores,,1,1,1,1
+access_exams_marks,exams_marks,model_exams_marks,,1,1,1,1

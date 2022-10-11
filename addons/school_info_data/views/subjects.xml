@@ -25,8 +25,6 @@
                         <field name="chapter" />
                         <field name="start_date" />
                         <field name="end_date" />
-                        <field name="fail_mark" />
-                        <field name="pass_mark" />
                     </group>
                 </sheet>
             </form>
@@ -42,8 +40,6 @@
                 <field name="chapter" optional = "show"/>
                 <field name="start_date" optional = "show"/>
                 <field name="end_date" optional = "show"/>
-                <field name="fail_mark" optional = "show"/>
-                <field name="pass_mark" optional = "show"/>
             </tree>
         </field>
     </record>
@@ -61,8 +57,6 @@
                                 <li>Chapter :<field name="chapter" string = 'Chapter : '/></li>
                                 <li>Start_Date :<field name="start_date" string = 'Start_Date : '/></li>
                                 <li>End_Date :<field name="end_date" string = 'End_Date : '/></li>
-                                <li>Fail :<field name="fail_mark" string = 'Fail : '/></li>
-                                <li>Pass :<field name="pass_mark" string = 'Pass : '/></li>
                             </ul>
                         </div>
                     </t>

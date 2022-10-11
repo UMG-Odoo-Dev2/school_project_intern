@@ -46,11 +46,12 @@
 # a = input("Enter a:")
 # hello(a)
 
-def concatenate(**kwargs):
-    result = ""
-    # Iterating over the Python kwargs dictionary
-    for arg in kwargs.values():
-        result += arg
-    return result
+# def concatenate(**kwargs):
+#     result = ""
+#     # Iterating over the Python kwargs dictionary
+#     for arg in kwargs.values():
+#         result += arg
+#     return result
 
-print(concatenate(a="Real", b="Python", c="Is", d="Great", e="!"))
+# print(concatenate(a="Real", b="Python", c="Is", d="Great", e="!"))
+
