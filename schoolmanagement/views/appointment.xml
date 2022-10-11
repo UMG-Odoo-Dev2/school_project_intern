@@ -31,20 +31,27 @@
                             <!-- <field name="teacher_id" domain="[('role','=','teacher'),('status','=','current')]" /> -->
 
                     </group>
-                    <group>
+                  </group>
                     <!--notebook-->
                         <notebook>
-                            <page name="examm_student" string="Exam Student">
-                            <field name="name_id" domain="[('role','=','student'),('status','=','current')]"/></page>
-                            <page name="score" string="Student Score">
-                            <field name="score" />
+                            <page string="Student Info:">
+                               <field name="school_exam_line">
+                                 <tree>
+                                    <field name="student_id" domain="[('role','=','student')]" />
+                                    <field name="score" />
+                                    <field name="exam_id" />
+                                    <field name="status" />
+                                 </tree>
+                               </field>
+                            
+                             
                                 
                             </page>
                         </notebook>
-                    </group>
                     
                     
-                </group>
+                    
+                
             </sheet>
          </form>
       </field>
@@ -57,8 +64,9 @@
             
             <field name="subject_id" />
             <field name="teacher" />
-            <field name="name_id" />
-            <field name="score" /> 
+            <field name="school_exam_line" />
+            <!-- <field name="student_id" /> -->
+            <!-- <field name="score" />  -->
          </tree>
       </field>
    </record>

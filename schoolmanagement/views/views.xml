@@ -18,8 +18,8 @@
                <group>
                   <group>
                      <field name="name" required="True" />
-                     <field name="role" />
-                     <field name="status" required="True" />
+                     <field name="role" decoration-success="role=='student'" />
+                     <field name="status"  />
                      <field name="father_name" attrs = "{'invisible' : [('role', '=', 'student')]}"/>
                   </group>
                   <group>
@@ -28,7 +28,7 @@
                      <field name="degree" attrs = "{'invisible' : [('role', '=', 'student')]}"/>
                      <field name="date_of_birth" required="True" />
                      <field name="ph_no" />
-                     <field name="active" />
+                     <!-- <field name="active" />  -->
                   </group>
                </group>
             </sheet>
@@ -98,15 +98,17 @@
       <field name="name">model_name.view.tree</field>
       <field name="model">school.model</field>
       <field name="arch" type="xml">
-         <tree string="">
+         <tree decoration-success="role=='student'" decoration-info="role=='teacher'" sample="1" multi_edit="1"><!--color for tree--><!--multi edit-->
             <field name="name" required="True" />
-            <field name="role" />
-            <field name="status" />
+            <!--widget and decoration color-->
+            <field name="role" decoration-success="role=='student'"  decoration-info="role in ('teacher','in consulation')" widget="badge" />
+            <field name="status"  />
             <field name="country" />
             <field name="father_name" required="True" />
             <field name="mother_name" />
             <field name="degree" />
             <field name="date_of_birth" />
+             <field name="activity_ids" widget="list_activity" /><!--widget activity-->
             <field name="ph_no" />
             <field name="state" />
          </tree>

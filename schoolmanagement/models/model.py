@@ -26,7 +26,7 @@ class School(models.Model):
      degree=fields.Char("Degree")
      date_of_birth=fields.Date()
      ph_no=fields.Integer()
-     active=fields.Boolean(string="Active",default=True)
+     # active=fields.Boolean(string="Active",default=True)
     
      state = fields.Selection(selection=[
           ('old', 'Old'),
@@ -43,3 +43,4 @@ class School(models.Model):
       ('1','Low'),
       ('2','High'),
       ('3','Very High')],string="Priority")
+     

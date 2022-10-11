@@ -2,3 +2,6 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acess_school_model,school.model,model_school_model,,1,1,1,1
 acess_appointment_model,school.appointment.model,model_appointment_model,,1,1,1,1
 acess_subject_model,school.subject.model,model_subject_model,,1,1,1,1
+acess_school_exam_line_model,school.exam.line,model_school_exam_line,,1,1,1,1
+acess_cancel_model,cancel.model,model_cancel_model,,1,1,1,1
+
