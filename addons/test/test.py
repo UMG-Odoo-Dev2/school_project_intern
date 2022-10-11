@@ -55,3 +55,14 @@
 
 # print(concatenate(a="Real", b="Python", c="Is", d="Great", e="!"))
 
+# A = 4
+# A = A.__add__(5)
+# print(A)
+
+from datetime import date
+ 
+def age(birthdate):
+    today = date.today()
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    return age
+

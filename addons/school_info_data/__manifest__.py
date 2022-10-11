@@ -1,7 +1,7 @@
 {
     'name' : 'School Info Data',
     # 'License' : 'LGPL-3',
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
     'data' : [
         'security/ir.model.access.csv',
         'views/views.xml',

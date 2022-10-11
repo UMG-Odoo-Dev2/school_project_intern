@@ -1,3 +1,4 @@
+from datetime import date
 from email.policy import default
 import string
 from odoo import models,fields
@@ -8,7 +9,8 @@ class SchoolInfo(models.Model):
 
     name = fields.Char()
     avator = fields.Binary()
-    date_of_birth = fields.Date()
+    born = fields.Date()
+    age = fields.Integer('age_calculate')
     father_name = fields.Char()
     gender = fields.Selection([("male", "Male"), ("female", "Female")], "Gender")
     degree = fields.Char()
@@ -25,3 +27,7 @@ class SchoolInfo(models.Model):
     active = fields.Boolean(string = "Active", default = "True")
     subjects = fields.Many2one('subject.management', string = "Subjects")
     attendance = fields.Selection([("attend", "Attendance"), ("absence", "Absence"), ("leave", "Leave")], required = True)
+    def age_calculate(born):
+        today = date.today()
+        age_calculate = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+        return age_calculate

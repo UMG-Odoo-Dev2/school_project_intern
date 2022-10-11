@@ -10,14 +10,12 @@ class ExamModel(models.Model):
     subject_ids = fields.One2many('exams.marks','exam_id', string="Select Subject")
     student_ids = fields.Many2one('teachers.students', string="Students")
     exam_ids = fields.Many2one('exam.info', string = "Exam")
+    teacher_id = fields.Many2one('teachers.students', string = 'Tec_id', related='exam_ids.teacher_id')
+
 class SubjectInherit(models.Model):
     _name = 'exams.marks'
 
-
     subject_id = fields.Many2one('subject.management')
-    teacher_id = fields.Char()
-    related ='teacher_id'
-    total = fields.Integer()
     score = fields.Integer(string="Score")
     status = fields.Char(string = "Status")
     exam_id = fields.Many2one('exam.scores', string = 'ID')
@@ -34,5 +32,3 @@ class SubjectInherit(models.Model):
             self.status = "Perfect"
         else:
             self.status = "No exam result"
-
-        self.total += self.score
