@@ -9,7 +9,7 @@
                 <sheet>
                     <group>
                         <field name="subjects" />
-                        
+                        <field name="teacher_id" domain ="[('role', '=', 'teacher'),('state', '=', 'presence')]"/>
                     </group>
                 </sheet>
             </form>
@@ -22,7 +22,7 @@
         <field name="arch" type="xml">
             <tree string="">
                 <field name="subjects" optional="show"/>
-                
+                <field name="teacher_id" optional="show"/>
             </tree>
         </field>
     </record>

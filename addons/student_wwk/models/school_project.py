@@ -9,7 +9,7 @@ class SchoolProject(models.Model):
 
     name = fields.Char('Full Name:')
     roll_num = fields.Char('Roll Number:')
-    teacher_num = fields.Char('Teacher ID:')
+    # teacher_num = fields.Char('Teacher ID:')
     gender = fields.Selection([('male','Male'),('female','Female')],'Gender:')
     role = fields.Selection([('student','Student'),('teacher','Teacher')],'Role:')
     #state = fields.Selection([('presence','Presence'),('absence','Absence'),('former','Former')],'State:')
@@ -20,16 +20,16 @@ class SchoolProject(models.Model):
     ph_no = fields.Char('Phone Number:')
     email = fields.Char('Email:')
     avator = fields.Binary()
-    subject_id = fields.Many2one('school.subject',string='Subject')
-    teacher_id = fields.Char()
-    # sub_id = fields.Char()
-    student_id = fields.Char()
-    active = fields.Boolean(string="Active", default=True)
+    subject = fields.Char('Subject')
+    
+    # active = fields.Boolean(string="Active", default=True)
     state = fields.Selection(selection=[
        ('presence', 'Presence'),
        ('absence', 'Absence'),
        ('former', 'Former'),
    ], string='Status')
    
+
+
    
 

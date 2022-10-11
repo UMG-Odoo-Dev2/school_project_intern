@@ -6,8 +6,8 @@ class Subject(models.Model):
     
    
     subjects = fields.Char('Subjects')
-    teacher_id = fields.Char()
-    stdent_ids = fields.Char()
-    student_id = fields.Char()
+    teacher_id = fields.Many2one('school.project',string="Teacher")
+    # stdent_ids = fields.Char()
+    # student_id = fields.Char()
     
    

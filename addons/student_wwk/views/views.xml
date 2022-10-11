@@ -66,12 +66,12 @@
                     <group>
                         <field name="dob"  attrs="{'invisible':[('role','=','teacher')]}"/>
                         <field name="roll_num" attrs="{'invisible':[('role','=','teacher')]}"/>
-                        <field name ="teacher_num" attrs="{'invisible':[('role','=','student')]}"/>
+                        <field name ="subject" attrs="{'invisible':[('role','=','student')]}"/>
                         <field name="ph_no" attrs="{'invisible':[('role','=','teacher')]}"/>
                         <field name="email" widget="email" attrs="{'invisible':[('role','=','teacher')]}"/>
                         <!-- <field name="state" widget="Selection" required="True"/> -->
-                        <field name="subject_id" attrs="{'invisible':[('role','=','student')]}"/>
-                        <field name="active" invisible="1"/>
+                        <!-- <field name="subject_id" attrs="{'invisible':[('role','=','student')]}"/> -->
+                        <!-- <field name="active" invisible="1"/> -->
                     </group>    
                     </group>
                 </sheet>
@@ -87,7 +87,7 @@
                 <field name="avator" widget="image" class="oe_avatar"/>
                 <field name="name" optional="show"/>
                 <field name="roll_num" optional="show"/>
-                <field name="teacher_num" optional="show"/>
+                <field name="subject" optional="show"/>
                 <field name="gender" optional="show"/>
                 <field name="dob" optional="show"/>
                 <field name="father_name" optional="show"/>

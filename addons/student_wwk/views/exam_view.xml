@@ -7,37 +7,49 @@
             <form string="">
                 <sheet>
                     <group>
+                        <field name="teacher_id" domain ="[('role', '=', 'teacher'),('state', '=', 'presence')]" />
                         <field name="subject_id" />
                     </group>
-                    <group>
-                        <field name="teacher_id" domain="[('role','=','teacher'),('state','=','presence')]"/>
-                    </group>
                     <notebook>
-                        <page name="stu" string="Student">
-                            <!-- <field name="student_id" >
-                                
-                                <tree string="">
-                                      <field name="student_ids" />
-                                      <field name="score" />   
+                        <page string="Student List" name="student">
+                            <field name="exam_line_ids">
+                                <tree editable="bottom">
+                                    <field name="student_id" domain ="[('role', '=', 'student'),('state', '=', 'presence')]"/>
+                                    <field name="score"/>
+                                    <field name="status"/>
                                 </tree>
-                                <form string="">
-                                    <sheet>
+                                <form>
+                                    <group>
                                         <group>
-                                            <field name="student_ids" domain="[('role','=','student'),('state','=','presence')]"/>     
+                                            <field name="student_id"/>
                                         </group>
-                                        <group >
-                                            <field name="score" /> 
+                                        <group>
+                                            <field name="score"/>
                                         </group>
-                                        </sheet>
+                                        <group>
+                                            <field name="status"/>
+                                        </group>
+                                    </group>
                                 </form>
-                            
-                            </field> -->
+                            </field>
                         </page>
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
+    <record id="school_exam_view_tree" model="ir.ui.view">
+        <field name="name">school_exam.view.tree</field>
+        <field name="model">school.exam</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="teacher_id" />
+                <field name="subject_id"/>
+                <field name="exam_line_ids"/>
+            </tree>
+        </field>
+    </record>
+
 
     <record id="school_exam_action" model="ir.actions.act_window">
         <field name="name">Exam</field>
