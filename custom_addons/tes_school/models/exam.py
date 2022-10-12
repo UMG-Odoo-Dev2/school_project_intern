@@ -4,7 +4,7 @@ from odoo import fields,models,api
 class Exam(models.Model):
     _name = "exam.model"
     _description = "Exam"
-    _rec_name = "subject_id"
+    _rec_name = 'subject_id'
     
     teacher_id = fields.Many2one('school.pj',string="Teacher Name:")
     subject_id = fields.Many2one('subject.model', string="Subject Name:")

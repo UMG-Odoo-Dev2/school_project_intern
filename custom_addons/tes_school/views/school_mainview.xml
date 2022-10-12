@@ -132,7 +132,7 @@
         <field name="arch" type="xml">
             <form string="">
             <header>
-                <field name="state" widget="statusbar" nolable="1" options="{'clickable':'1'}" statusbar_visible="old,new,current"/>
+                <field name="state" widget="statusbar" options="{'clickable':'1'}" statusbar_visible="old,new,current"/>
             </header>
                 <sheet>
                     <group >

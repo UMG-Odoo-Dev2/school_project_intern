@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_exam_result" model="ir.actions.report">
+        <field name="name">Exam Result</field>
+        <field name="model">school.pj</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tes_school.report_exam_result</field>
+        <field name="report_file">tes_school.report_exam_result</field>
+        <!-- <field name="print_report_name">'%s' % object.name</field> -->
+        <field name="binding_model_id" ref="model_school_pj"/>
+        <field name="binding_type">report</field>
+    </record>
+    <template id="report_exam_result">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <!-- <t t-call="web.external_layout">
+                    <div class="page">
+                        
+                    </div>
+                </t> -->
+                <center>
+                    <h1>Exam Report</h1>
+                </center>
+            </t>
+        </t>
+    </template>
+</odoo>

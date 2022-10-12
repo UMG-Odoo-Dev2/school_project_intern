@@ -23,7 +23,7 @@
                             <field name="teacher_id" domain="[('role','=','teacher'),('state','=','current')]"/>
                         </group>
                         <group>                        
-                            <field name="subject_id" />                          
+                            <field name="subject_id"/>                          
                         </group>
                     </group>
                     <notebook>
