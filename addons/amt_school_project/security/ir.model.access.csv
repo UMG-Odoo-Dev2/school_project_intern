@@ -1,2 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_leoschool_project_model,leoschool.project.model,model_leoschool_project_model,,1,1,1,1
+access_school_subject,school.subject,model_school_subject,,1,1,1,1
+access_school_exam_model,school.exam.model,model_school_exam_model,,1,1,1,1
+access_school_exam_line,school.exam.line,model_school_exam_line,,1,1,1,1
+access_student_summary_wizard,student.summary.wizard,model_student_summary_wizard,,1,1,1,1

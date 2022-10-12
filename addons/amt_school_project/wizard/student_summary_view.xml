@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="student_report_view_form" model="ir.ui.view">
+        <field name="name">student.report.view.form</field>
+        <field name="model">student.summary.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">    
+                <group>
+                    <group>
+                        <field name="student_id" domain="[('role','=','student'), ('state','=','current')]"/>    
+                    </group>
+                </group>
+                <footer>
+                    <button string="Confirm" class="btn-primary" special="save" data-hotkey="v"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_student_report" model="ir.actions.act_window">
+        <field name="name">Student Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.summary.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    
+
+</odoo>

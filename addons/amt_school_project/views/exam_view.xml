@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="exam_view_tree" model="ir.ui.view">
+        <field name="name">exam.view.tree</field>
+        <field name="model">school.exam.model</field>
+        <!-- <field name="inherit" ref="school.exam.line"></field> -->
+        <field name="arch" type="xml">
+            <!-- <tree string="Marks" decoration-success="status == 'Passed with Destination'"
+                decoration-info="status == 'Passed'" decoration-danger="status == 'Wrong Cridential!!!'"
+                decoration-warning="status == 'Failed'"> -->
+            <tree string="Exam Box">
+                <field name="child_id" />
+                    <!-- <field name="student_id" optional="show"/> -->
+                    <!-- <field name="subject_id" optional="show"/>
+                    <field name="teacher_id" optional="show"/> -->
+                <field name="subject_id" optional="show"/>
+                <field name="teacher_id" optional="show"/>
+            </tree>
+        </field>
+    </record>
+    <record id="school_exam_view_form" model="ir.ui.view">
+        <field name="name">school_exam.view.form</field>
+        <field name="model">school.exam.model</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="subject_id" required="True"/>
+                            <!-- <field name="subject_ids" widget="one2many"/> -->
+                            <!-- <filter name="student_id" string="Student" domain="[('student_id.role', '=', 'student')]" /> -->
+                        </group>
+                        <group>
+                            <field name="teacher_id" domain="[('role', '=', 'teacher'), ('state', '=', 'current')]"
+                            required="True"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="std_list" string="Student List">
+                            <field name="child_id" widget="one2many"> 
+                                <tree editable="bottom">
+                                    <field name="student_id" domain="[('role', '=', 'student'), ('state', '=', 'current')]"/>
+                                    <field name="score" />
+                                    <field name="status" />
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="student_id" />
+                                        <field name="score" />
+                                        <field name="status" />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                    <!-- <notebook>
+                        <page string="Student List" name="student">
+                            <field name="student_ids">
+                                <tree editable="bottom">
+                                    <field name="student_id" domain="[('role', '=', 'student'), ('state', '=', 'current')]"/>
+                                    <field name="status"/>
+                                    <field name="score"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="student_id" />
+                                        <field name="status"/>
+                                        <field name="score"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook> -->
+                </sheet>    
+            </form>
+        </field>
+    </record>
+
+    <record id="school_exam_action" model="ir.actions.act_window">
+        <field name="name">Exam Panel</field>
+        <field name="res_model">school.exam.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
