@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="report_exam_action" model="ir.actions.act_window">
+        <field name="name">Report Exam</field>
+        <field name="res_model">exam.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_report_result" model="ir.actions.report">
+        <field name="name">Result Details</field>
+        <field name="model">exam.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">student_wwk.report_result_detail</field>
+        <field name="report_file">student_wwk.report_result_detail</field>
+        <!-- <field name="print_report_name">'%s' % object.name</field> -->
+        <field name="binding_model_id" ref="model_exam_report_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_exam_view_form" model="ir.ui.view">
+        <field name="name">report_exam.view.form</field>
+        <field name="model">exam.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group>
+                    <field name="student_id"  domain ="[('role', '=', 'student'),('state', '=', 'presence')]"/>
+                </group>
+                <footer>
+                    <button name="do_print" string="Print" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            
+            </form>
+        </field>
+    </record>
+
+    <template id="report_result_detail">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="text-center">
+                        <h2>Exam Result</h2>
+                    </div>
+                        
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <menuitem
+        id="exam_report_menu"
+        name="Reporting"
+        action="report_exam_action"
+        parent="school_project_root_menu"
+        sequence="10"/>
+    
+</odoo>

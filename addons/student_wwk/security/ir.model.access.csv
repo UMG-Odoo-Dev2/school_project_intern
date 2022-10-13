@@ -3,4 +3,4 @@ access_school_project,school.project,model_school_project,,1,1,1,1
 access_school_subject,school.subject,model_school_subject,,1,1,1,1
 access_school_exam,school.exam,model_school_exam,,1,1,1,1
 access_school_exam_line,school.exam.line,model_school_exam_line,,1,1,1,1
-
+access_exam_report_wizard,exam.report.wizard,model_exam_report_wizard,,1,1,1,1
