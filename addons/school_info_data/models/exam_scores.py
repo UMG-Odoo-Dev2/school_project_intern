@@ -11,7 +11,6 @@ class ExamModel(models.Model):
     student_ids = fields.Many2one('teachers.students', string="Students")
     exam_ids = fields.Many2one('exam.info', string = "Exam")
     teacher_id = fields.Many2one('teachers.students', string = 'Tec_id', related='exam_ids.teacher_id')
-
 class SubjectInherit(models.Model):
     _name = 'exams.marks'
 
@@ -19,16 +18,26 @@ class SubjectInherit(models.Model):
     score = fields.Integer(string="Score")
     status = fields.Char(string = "Status")
     exam_id = fields.Many2one('exam.scores', string = 'ID')
-
-    @api.onchange('score')
+    total_score = fields.Integer(string = 'Total', compute = '_compute_score')
+    
+    @api.onchange('score', 'status')
     def _onchange_score(self):
         if self.score <= 39:
             self.status = "Fail"
         elif self.score <= 79 :
             self.status = "Pass"
-        elif self.score <= 80:
+        elif self.score >= 80:
             self.status = "Destiction"
-        elif self.score <=100:
+        elif self.score ==100:
             self.status = "Perfect"
         else:
             self.status = "No exam result"
+
+    def _compute_score(self):
+        self.total_score = False
+        total_score = 0
+        for rec in self:
+            if rec.score:
+                total_score += rec.score
+
+        self.total_score = total_score

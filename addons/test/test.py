@@ -59,10 +59,15 @@
 # A = A.__add__(5)
 # print(A)
 
-from datetime import date
+# from datetime import date
  
-def age(birthdate):
-    today = date.today()
-    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
-    return age
+# def age(birthdate):
+#     today = date.today()
+#     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+#     return age
 
+list = [2, 3, 4, 5]
+a=0
+for i in list:
+    a += i
+print(a)

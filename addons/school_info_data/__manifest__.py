@@ -8,5 +8,6 @@
         'views/subjects.xml',
         'views/exam.xml',
         'views/scores.xml',
+        'wizard/create_school.xml',
     ]
 }

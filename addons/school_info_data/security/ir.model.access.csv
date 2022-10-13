@@ -5,3 +5,4 @@ access_exam_info,exam_info,model_exam_info,,1,1,1,1
 access_exam_scores,exam_scores,model_exam_scores,,1,1,1,1
 access_exam_scores,exam_scores,model_exam_scores,,1,1,1,1
 access_exams_marks,exams_marks,model_exams_marks,,1,1,1,1
+access_create_school_wizard,create_school_wizard,model_create_school_wizard,,1,1,1,1

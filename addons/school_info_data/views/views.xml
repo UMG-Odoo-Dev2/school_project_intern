@@ -30,7 +30,7 @@
                     <group>
                         <group>
                             <field name="name" />
-                            <field name="born" />
+                            <field name="date_of_birth" />
                             <field name="age" />
                         </group>
                         <group>
@@ -57,7 +57,7 @@
         <field name="arch" type="xml">
             <tree string="">
                 <field name="name" optional = "show"/>
-                <field name="born" optional = "show"/>
+                <field name="date_of_birth" optional = "show"/>
                 <field name="avator" optional = "show" widget = "image" class = "oe_avatar"/>
                 <field name="father_name" optional = "hide"/>
                 <field name="gender" optional = "show"/>
@@ -146,7 +146,7 @@
         <field name="name">teachers_students.view.calendar</field>
         <field name="model">teachers.students</field>
         <field name="arch" type="xml">
-            <calendar string="" date_start="born" color="name">
+            <calendar string="" date_start="date_of_birth" color="name">
                 <field name="name"/>
             </calendar>
         </field>

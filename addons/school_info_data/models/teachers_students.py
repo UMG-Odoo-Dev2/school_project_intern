@@ -9,8 +9,8 @@ class SchoolInfo(models.Model):
 
     name = fields.Char()
     avator = fields.Binary()
-    born = fields.Date()
-    age = fields.Integer('age_calculate')
+    date_of_birth = fields.Date(string = 'Date of Birth')
+    age = fields.Integer(string = 'Age', compute = '_compute_age', tracking = True)
     father_name = fields.Char()
     gender = fields.Selection([("male", "Male"), ("female", "Female")], "Gender")
     degree = fields.Char()
@@ -27,7 +27,10 @@ class SchoolInfo(models.Model):
     active = fields.Boolean(string = "Active", default = "True")
     subjects = fields.Many2one('subject.management', string = "Subjects")
     attendance = fields.Selection([("attend", "Attendance"), ("absence", "Absence"), ("leave", "Leave")], required = True)
-    def age_calculate(born):
-        today = date.today()
-        age_calculate = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
-        return age_calculate
+    def _compute_age(self):
+        for rec in self:
+            today = date.today()
+            if rec.date_of_birth:
+                rec.age = today.year - rec.date_of_birth.year
+            else:
+                rec.age = 0
