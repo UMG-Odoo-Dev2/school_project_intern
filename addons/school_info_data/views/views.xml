@@ -24,26 +24,23 @@
         <field name="arch" type="xml">
             <form string="Please to Enter Data">
                 <header>
-                    <field name="state" widget="statusbar" nolabel="1" options="{'clickable':'1'}" statusbar_visible="teacher,student" />
+                    <field name="state" widget="statusbar" nolabel="1" options="{'clickable':'1'}" statusbar_visible="teacher,teacher_head,student" />
                 </header>
                 <sheet>
                     <group>
                         <group>
                             <field name="name" />
                             <field name="date_of_birth" />
-                            <field name="age" />
-                        </group>
-                        <group>
+                            <field name="gender" />
                             <field name="avator" widget = "image" class = "oe_avator" />
                         </group>
                         <group>
                             <field name="father_name" />
-                            <field name="gender" />
+                            <!-- <field name="age" /> -->
                             <field name="degree" attrs="{'invisible': [('state', '=', 'student')]}"/>
                             <field name="email" attrs="{'invisible': [('state', '=', 'student')]}"/>
                             <field name="subjects" attrs="{'invisible': [('state', '=', 'student')]}"/>
                             <field name="address" />
-                            <field name="attendance" />
                         </group>
                     </group>
                 </sheet>
@@ -58,16 +55,14 @@
             <tree string="">
                 <field name="name" optional = "show"/>
                 <field name="date_of_birth" optional = "show"/>
+                <field name="gender" optional = "show"/>
                 <field name="avator" optional = "show" widget = "image" class = "oe_avatar"/>
                 <field name="father_name" optional = "hide"/>
-                <field name="gender" optional = "show"/>
                 <field name="state" optional = "show"/>
                 <field name="degree" optional = "show"/>
                 <field name="email" optional = "show"/>
                 <field name="address" optional = "show"/>
                 <field name="subjects" optional = "show"/>
-                <field name="attendance" optional = "show"/>
-                <field name="age" optional = "show"/>
             </tree>
         </field>
     </record>

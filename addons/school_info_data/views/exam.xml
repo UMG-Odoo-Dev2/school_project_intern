@@ -25,7 +25,7 @@
                         <field name="months" />
                         <field name="duration" />
                         <field name="teacher_id" domain = "[('state', '=', 'teacher')]"/>
-                        <field name="student_id" widget = "many2many_tags" domain = "[('state', '=', 'student'), ('attendance', '=', 'attend')]"/>
+                        <field name="student_id" widget = "many2many_tags" domain = "[('state', '=', 'student')]"/>
                         <field name="exam_date_start" />
                         <field name="exam_date_end" />
                         <field name="subject_ids" widget = "many2many_tags" />

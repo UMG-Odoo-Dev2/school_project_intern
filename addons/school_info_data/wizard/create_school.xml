@@ -25,6 +25,28 @@
         <field name="target">new</field>
     </record>
 
+    <record id="action_report_create_school" model="ir.actions.report">
+        <field name="name">Score Detail</field>
+        <field name="model">create.school.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school_info_data.score_template</field>
+        <field name="report_file">school_info_data.score_template</field>
+        <field name="binding_model_id" ref="model_create_school_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="score_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>subjects</h2>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
     <menuitem
         id="create_school_menu"
         name="Filter By"

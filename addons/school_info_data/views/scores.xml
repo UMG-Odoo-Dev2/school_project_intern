@@ -32,25 +32,6 @@
                                     <field name="exam_id" invisible = 'True'/>
                                     <field name="total_score"/>
                                 </tree>
-                                <!-- <form>
-                                    <group>
-                                        <group>
-                                            <field name="subject_id" />
-                                        </group>
-                                        <group>
-                                            <field name="score" />
-                                        </group>
-                                        <group>
-                                            <field name="status" />
-                                        </group>
-                                        <group>
-                                            <field name="exam_id" invisible = 'True'/>
-                                        </group>
-                                        <group>
-                                            <field name="total_score" />
-                                        </group>
-                                    </group>
-                                </form> -->
                             </field>
                         </page>
                     </notebook>

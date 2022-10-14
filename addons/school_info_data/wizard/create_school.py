@@ -8,4 +8,7 @@ class CreateSchoolWizard(models.TransientModel):
     subjects = fields.Many2one('subject.management', string = 'Subject')
 
     def do_action(self):
-        print('Test...........', self.read()[0])
+        data = {
+            'form' : self.read()[0],
+        }
+        return self.env.ref('school_info_data.action_report_create_school').report_action(self, data = data)
