@@ -16,5 +16,7 @@
       <field name="domain">[('role','=','teacher')]</field>
    </record>
    
+        
+   
    
 </odoo>

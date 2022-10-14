@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+      <record id="testing_inherit_module_name" model="ir.ui.view">
+        <field name="name">Testing Inherit</field>
+        <field name="model">school.model</field>
+        <field name="inherit_id" ref="schoolmanagement.model_school_view_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="//field[@name='date_of_birth']" position="before">
+        <field name="nrc" />
+            
+        </xpath>
+            
+        </field>
+      </record>
+    
+        
+    
+    </data>
+    
+
+</odoo>

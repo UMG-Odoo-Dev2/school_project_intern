@@ -9,22 +9,26 @@ class SchoolAppointment(models.Model):
     school_exam_line=fields.One2many('school.exam.line','exam_id',string='School Exam Line')
     subject_id = fields.Many2one(comodel_name='subject.model', string='Subject')
     teacher= fields.Char("Teacher")
+    # def action_test(self):
+    #     print("Button Clicked!!!")
+
+    # def print_report(self):
+    #     # print("kkk--->",self.reaf()[0])
+    #     data = {
+    #         'model':'appointment.model',
+    #         'form' :self.read()[0]
+    #     }
+    #     print("Data",data)
+    #     # return self.env.ref('schoolmanagement.report_').report_action(self,data=data)
+
 #     priority widget
     priority=fields.Selection([
       ('0','Normal'),
       ('1','Low'),
       ('2','High'),
       ('3','Very High')],string="Priority")
-    @api.onchange('score')
-    def OnchangeScore(self):
-        if self.score >=0 and self.score <= 39:
-            self.status = 'Fail'
-        elif self.score >= 40 and self.score <= 79:
-            self.status = 'Pass'
-        elif self.score >= 80 and self.score <= 100:
-            self.status = 'Pass with Distinations'
-        else:
-            self.status = 'Wrong Cridential'
+    
+    
 #     On Change
 
     @api.onchange('subject_id')
@@ -38,3 +42,13 @@ class SchoolExam(models.Model):
     score=fields.Integer(string="Score:")
     exam_id=fields.Many2one('appointment.model',string="Exam ID")
     status=fields.Char(string="Status", readonly=True)
+    @api.onchange('score')
+    def OnchangeScore(self):
+        if self.score >=0 and self.score <= 39:
+            self.status = 'Fail'
+        elif self.score >= 40 and self.score <= 79:
+            self.status = 'Pass'
+        elif self.score >= 80 and self.score <= 100:
+            self.status = 'Pass with Distinations'
+        else:
+            self.status = 'Wrong Cridential'

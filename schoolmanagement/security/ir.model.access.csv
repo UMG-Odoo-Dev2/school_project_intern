@@ -3,5 +3,10 @@ acess_school_model,school.model,model_school_model,,1,1,1,1
 acess_appointment_model,school.appointment.model,model_appointment_model,,1,1,1,1
 acess_subject_model,school.subject.model,model_subject_model,,1,1,1,1
 acess_school_exam_line_model,school.exam.line,model_school_exam_line,,1,1,1,1
-acess_cancel_model,cancel.model,model_cancel_model,,1,1,1,1
+acess_exam_student_record,exam.student.record,model_exam_student_record,,1,1,1,1
+acess_section_model,section.model,model_section_model,,1,1,1,1
+acess_attendence_model,attendence.model,model_attendence_model,,1,1,1,1
+acess_attendence_student_model,attendence_student.model,model_attendence_student_model,,1,1,1,1
+
+
 

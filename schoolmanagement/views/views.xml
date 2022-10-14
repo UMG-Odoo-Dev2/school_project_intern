@@ -17,17 +17,22 @@
             </div>
                <group>
                   <group>
-                     <field name="name" required="True" />
                      <field name="role" decoration-success="role=='student'" />
-                     <field name="status"  />
-                     <field name="father_name" attrs = "{'invisible' : [('role', '=', 'student')]}"/>
+                     <field name="name"  />
+                     <field name="roll_no" attrs = "{'invisible' : [('role', '=', 'teacher')]}"/>
+                     <field name="gender"/>
+                     <field name="date_of_birth" />
+                     <field name="age"/>
+                     <field name="father_name" />
                   </group>
                   <group>
-                     <field name="mother_name" required="True" />
+                     
                      <field name="country" />
                      <field name="degree" attrs = "{'invisible' : [('role', '=', 'student')]}"/>
-                     <field name="date_of_birth" required="True" />
+                     <field name="address"  />
+                     
                      <field name="ph_no" />
+                     <field name="teacher_role" attrs = "{'invisible' : [('role', '=', 'student')]}"/>
                      <!-- <field name="active" />  -->
                   </group>
                </group>
@@ -99,18 +104,25 @@
       <field name="model">school.model</field>
       <field name="arch" type="xml">
          <tree decoration-success="role=='student'" decoration-info="role=='teacher'" sample="1" multi_edit="1"><!--color for tree--><!--multi edit-->
-            <field name="name" required="True" />
+            
             <!--widget and decoration color-->
             <field name="role" decoration-success="role=='student'"  decoration-info="role in ('teacher','in consulation')" widget="badge" />
-            <field name="status"  />
-            <field name="country" />
-            <field name="father_name" required="True" />
-            <field name="mother_name" />
-            <field name="degree" />
+            <field name="name" required="True" />
+            <field name="roll_no" />
+            <field name="gender"  />
             <field name="date_of_birth" />
+            <field name="age" />
+            <field name="father_name"  />
+            <field name="country" />
+            
+            
+            <field name="degree" />
+            
              <field name="activity_ids" widget="list_activity" /><!--widget activity-->
+             <field name="address"  />
             <field name="ph_no" />
-            <field name="state" />
+            <field name="teacher_role"  />
+            
          </tree>
       </field>
    </record>

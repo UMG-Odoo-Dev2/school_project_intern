@@ -23,9 +23,22 @@ class School(models.Model):
      
      father_name=fields.Char("Father Name")
      mother_name=fields.Char("Mother Name")
+     roll_no=fields.Char("Roll No")
      degree=fields.Char("Degree")
      date_of_birth=fields.Date()
      ph_no=fields.Integer()
+     gender=fields.Selection(selection=[
+          ('male','Male'),
+          ('female','Female'),
+     ])
+     age=fields.Integer("Age")
+     address=fields.Char("Address")
+     teacher_role=fields.Selection(selection=[
+          ('principal','Principal'),
+          ('teacher_head','Teacher Head'),
+          ('teacher','Teacher')
+     ])
+     
      # active=fields.Boolean(string="Active",default=True)
     
      state = fields.Selection(selection=[

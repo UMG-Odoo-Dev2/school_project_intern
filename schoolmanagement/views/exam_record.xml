@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
    <!--school action-->
-   <record id="school_appointment_action" model="ir.actions.act_window">
+   <record id="exam_record_action" model="ir.actions.act_window">
       <field name="name">School Appointment</field>
       <field name="res_model">appointment.model</field>
       <field name="context" />
@@ -28,18 +28,20 @@
                     <group>
                             
                             <field name="teacher" />
+                            
                             <!-- <field name="teacher_id" domain="[('role','=','teacher'),('status','=','current')]" /> -->
 
                     </group>
                   </group>
+                  <footer></footer>
                     <!--notebook-->
                         <notebook>
                             <page string="Student Info:">
                                <field name="school_exam_line">
-                                 <tree>
+                                 <tree editable="bottom">
                                     <field name="student_id" domain="[('role','=','student')]" />
                                     <field name="score" />
-                                    <field name="exam_id" />
+                                    <field name="exam_id"  invisible="1"/> 
                                     <field name="status" />
                                  </tree>
                                </field>
